@@ -1,0 +1,21 @@
+.container{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+.ui .container{
+  display: flex;
+  min-height: 100vh;
+      height: 1000px;
+  flex-direction: column;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+}
+
+
+.titleDel{
+  font-size: 0.8em;
+}

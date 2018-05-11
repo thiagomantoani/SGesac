@@ -1,0 +1,51 @@
+<!-- Para entender o Leyout, Aplique uma cor para cada classe column, exemplo: column black -->
+<div id="particles-js"></div>
+<div class="ui stackable padded equal height grid center aligned ">
+    <div class="ui stackable equal height grid center aligned">
+      <div class="one wide  column "></div>
+      <div class="sixteen wide column ">
+
+        <div class="ui middle center aligned grid sixteen wide mobile sixteen wide tablet sixteen wide computer stackable">
+
+          <div class="column">
+
+            <!-- Título -->
+            <h2 class="ui blue image header segment stacked secondary ">
+              <div class="content pink">
+                GESAC
+              </div>
+            </h2>
+
+            <div class="ui large form segment stacked secondary ">
+              <!-- campo 1 -->
+              <div class="field">
+                <div class="ui right action left icon input">
+                  <i class="user icon"></i>
+                  <input type="text" [(ngModel)]="usuario.nome" id="usuario" placeholder="Login">
+                </div>
+              </div>
+
+              <!-- Linha Divisoria -->
+              <div class="ui inverted divider"></div>
+              <!-- campo 2 -->
+              <div class="field">
+                <div class="ui right action left icon input">
+                  <i class="lock icon"></i>
+                  <input type="password"   [(ngModel)]="usuario.senha" id="senha" placeholder="Senha">
+                </div>
+              </div>
+
+              <!-- Botão de logar -->
+              <button  (click)="fazerLogin()" class="ui blue submit button">
+                Login
+              </button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="one wide column"></div>
+    </div>
+  </div>
+
+  <!--(click)="fazerLogin()" [routerLink]="['menu']" -->

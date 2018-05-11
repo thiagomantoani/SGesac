@@ -1,0 +1,81 @@
+<div class="ui container">
+
+  <div class="ui stackable one column grid">
+    <div class="column">
+      <button class="ui labeled icon button" data-position="left" [routerLink]="['novo']">
+        <i class="right plus circle icon"></i>Adicionar Contratos</button>
+    </div>
+  </div>
+
+  <sui-dimmer class="inverted" [(isDimmed)]="segmentDimmed">
+      <div class="ui massive text loader">Carregando...</div>
+  </sui-dimmer>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th class="ui center aligned collapsing">
+          <div class="ui icon input">
+            <input class="tituloTabela" type="text" name="empresa" [(ngModel)]="filtros.empresa" placeholder="Empresa">
+            <i class="search icon"></i>
+          </div>
+        </th>
+        <th class="ui center aligned collapsing">
+          <div class="ui icon input">
+            <input class="tituloTabela" type="text" name="contrato" [(ngModel)]="filtros.contrato" placeholder="Contrato">
+            <i class="search icon"></i>
+          </div>
+        </th>
+        <th class="ui center aligned collapsing">
+          <div class="ui icon input">
+            <input class="tituloTabela" type="text" name="pontos" [(ngModel)]="filtros.pontos" placeholder="Pontos">
+            <i class="search icon"></i>
+          </div>
+        </th>
+        <th class="ui center aligned collapsing">
+          <div class="ui icon input">
+            <input class="tituloTabela" type="text" name="procSei" [(ngModel)]="filtros.procSei" placeholder="Processo SEI">
+            <i class="search icon"></i>
+          </div>
+        </th>
+        <th class="ui center aligned collapsing">
+            <p class="acaoTable">Ações</p>
+          </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contrato of contratos | filterContrato:filtros.empresa:filtros.contrato:filtros.pontos:filtros.procSei">
+        <td [innerHTML]="contrato.empresa"></td>
+        <td [innerHTML]="contrato.num_contrato"></td>
+        <td [innerHTML]="contrato.quant_pontos"></td>
+        <td [innerHTML]="contrato.processo_sei"></td>
+        <td class="ui center aligned collapsing">
+          <a class="ui icon button circular" suiPopup popupHeader="Visualizar" popupInverted="true">
+            <i class="search icon"></i>
+          </a>
+          <a class="ui icon button circular" suiPopup popupHeader="Editar" popupInverted="true" [routerLink]="[contrato.num_contrato]">
+            <i class="pencil alternate icon"></i>
+          </a>
+          <!-- <a class="ui icon button circular" suiPopup popupHeader="Remover" popupInverted="true" (click)="delModal(contrato,i)">
+            <i class="trash alternate icon"></i>
+          </a> -->
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="5">
+          <div class="ui right floated pagination menu">
+              <sui-pagination [collectionSize]='totalItens'
+                              [pageSize]="itensPagina"
+                              [maxSize]="10"
+                              [hasEllipses]="true"
+                              [(page)]="pagina"
+                              (click)="mudarPagina(pagina)"
+                              >
+              </sui-pagination>
+          </div>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

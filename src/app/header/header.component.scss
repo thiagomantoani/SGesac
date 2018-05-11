@@ -1,0 +1,12 @@
+$cor-azul-padrao: #002e9d;
+
+.ui.secondary.pointing.menu{
+  background-color: $cor-azul-padrao;
+}
+
+.ui.secondary.pointing.menu .item{
+  color: white;
+}
+div.ui.secondary.pointing.menu a.item.active{
+  border-color: white
+}

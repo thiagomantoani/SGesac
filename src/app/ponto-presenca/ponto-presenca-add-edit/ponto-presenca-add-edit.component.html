@@ -1,0 +1,296 @@
+<div class="ui container ">
+
+  <div class="row ">
+    <sui-tabset>
+      <div class="ui top attached tabular menu">
+         <a class="item" suiTabHeader="1" [(isActive)]="firstActive">Ponto de Presença</a>
+        <a class="item" suiTabHeader="2" [(isActive)]="secondActive">Endereço</a> 
+        <a class="item" suiTabHeader="3" [(isActive)]="thirdActive">Tipologia</a>
+         <a class="item" suiTabHeader="4" [(isActive)]="fourthActive">Contatos</a>
+      </div>
+
+      <!--incio da aba Ponto de presença-->
+      <div class="ui bottom attached segment" suiTabContent="1">
+        <form class="ui form" #fAddPontoPresenca="ngForm" (ngSubmit)="salvarPontoPresenca(fAddPontoPresenca)">
+          <!--<h4 class="ui dividing header">Shipping Information</h4>-->
+          <div class="field">
+            <div class="two fields">
+
+              <div class="field">
+                <label>Estabelecimento</label>
+                <input type="text" name="nome" placeholder="Estabelecimento" [(ngModel)]="pontoPresenca.nome" required #nome>
+
+              </div>
+              <div class="field">
+                <label>Inep</label>
+                <input type="text" name="inep" placeholder="inep" [(ngModel)]="pontoPresenca.inep" required #inep>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="four fields">
+
+              <div class="eight wide field">
+                <label>Contrato</label>
+                <select class="ui fluid dropdown" name="contrato" [(ngModel)]="pontoPresenca.contrato" (change)="selectContrato(pontoPresenca.contrato)"
+                  required #contrato>
+                  <option value="">Selecione Contrato</option>
+                  <option *ngFor="let contrato of contratos" value="{{contrato.num_contrato}}">{{contrato.nome_empresa}}</option>
+                </select>
+
+              </div>
+
+              <div class="three wide field">
+                <label>Lote</label>
+                <select class="ui fluid dropdown" name="lote" [(ngModel)]="pontoPresenca.cod_lote" (change)="selectlote(pontoPresenca.cod_lote)"
+                  required>
+                  <option value="">Selecione lote</option>
+                  <option *ngFor="let lote of lotes" value="{{lote.cod_lote}}">{{lote.lote}}</option>
+                </select>
+              </div>
+
+              <div class="five wide field">
+                <label>Velocidade</label>
+                <select class="ui fluid dropdown" name="velocidade" [(ngModel)]="pontoPresenca.cod_velocidade" required>
+                  <option value="">Selecione velocidade</option>
+                  <option *ngFor="let velocidade of velocidades" value="{{velocidade.cod_velocidade}}">{{velocidade.descricao}}</option>
+                </select>
+              </div>
+              <!--
+              <div class="field">
+                <label>Status</label>
+                <input type="text" name="status" placeholder="Status" readonly>
+              </div> -->
+
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="two fields">
+
+
+              <div class="field">
+                <label>Estado</label>
+                <select class="ui dropdown" [(ngModel)]="pontoPresenca.uf" name="uf" (change)="selectEstado(pontoPresenca.uf)" required #uf>
+                  <option value="">Selecione Estado</option>
+                  <option *ngFor="let uf of ufs" value="{{uf.uf}}">{{uf.uf}}</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Município</label>
+                <select class="ui dropdown" name="municipio" [(ngModel)]="pontoPresenca.cod_ibge" required #municipio>
+                  <option value="">Selecione Município</option>
+                  <option *ngFor="let municipio of municipios" value="{{municipio.cod_ibge}}">{{municipio.nome_municipio}}</option>
+                </select>
+
+              </div>
+
+              <div class="field">
+                <label>Instituição Responsavel</label>
+                <select class="ui dropdown" name="instituicaoResp" [(ngModel)]="pontoPresenca.cod_instituicao_resp" required #instituicaoResp>
+                  <option value="">Selecione Instituição</option>
+                  <option *ngFor="let instituicaoResp of instituicoesResp" value="{{instituicaoResp.cod_instituicao}}">{{instituicaoResp.sigla}}</option>
+                </select>
+               
+              </div>
+
+              <div class="field">
+                <label>Instituição Pagadora</label>
+                <select class="ui dropdown" name="instituicaoPag" [(ngModel)]="pontoPresenca.cod_instituicao_pag" required #instituicaoPag>
+                  <option value="">Selecione Instituição</option>
+                  <option *ngFor="let instituicaoPag of instituicoesRespPag" value="{{instituicaoPag.cod_instituicao}}">{{instituicaoPag.sigla}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui stackable one column grid">
+            <div class="column">
+              <button class="ui right labeled icon button right floated btn-color" type="submit" (click)="secondActive = true">
+                <i class="angle double right icon"></i> Próximo
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+      <!--fim da aba Ponto de presença-->
+
+
+
+
+      <!--incio da aba Endereço-->
+      <div class="ui bottom attached segment" suiTabContent="2">
+        <form class="ui form" #fAddEndereco="ngForm" (ngSubmit)="salvarEndereco(fAddEndereco)">
+
+          <div class="field">
+            <div class="fields">
+
+              <div class="eight wide field">
+                <label for="endereco">Endereco</label>
+                <input id="endereco" type="text" class="validate" name="endereco" [(ngModel)]="enderecoPontPre.endereco" required>
+              </div>
+
+              <div class="eight wide field">
+                <label for="numero">Nº</label>
+                <input id="numero" type="tel" class="validate" name="numero" [(ngModel)]="enderecoPontPre.numero" required>
+              </div>
+
+              <div class="eight wide field">
+                <label for="bairro">Bairro</label>
+                <input id="bairro" type="text" class="validate" name="bairro" [(ngModel)]="enderecoPontPre.bairro" required>
+              </div>
+
+              <div class="eight wide field">
+                <label for="complemento">Complemento</label>
+                <input id="complemento" type="text" class="validate" name="complemento" [(ngModel)]="enderecoPontPre.complemento" required>
+              </div>
+            </div>
+
+          </div>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <label for="cep">CEP</label>
+                <input id="cep" type="text" class="validate" name="cep" [(ngModel)]="enderecoPontPre.cep" required>
+              </div>
+
+              <div class="field">
+                <label>Area</label>
+                <select class="ui fluid dropdown" name="selectArea" [(ngModel)]="enderecoPontPre.area" required>
+                  <option value="" selected>Selecione a Área</option>
+                  <option value="r" selected>Rural</option>
+                  <option value="u" selected>Urbana</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="latitude">Latitude</label>
+                <input id="latitude" type="text" class="validate" name="latitude" [(ngModel)]="enderecoPontPre.latitude" required>
+              </div>
+
+              <div class="field">
+                <label for="longitude">Longitude</label>
+                <input id="longitude" type="text" class="validate" name="longitude" [(ngModel)]="enderecoPontPre.longitude" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui stackable two column grid">
+            <div class="column">
+              <button class="ui left labeled icon button" type="submit" (click)="firstActive = true; voltarPontoPresenca()">
+                <i class="angle double left icon"></i>Voltar</button>
+            </div>
+            <div class="column">
+              <button class="ui right labeled icon button right floated" (click)="thirdActive = true">
+                <i class="angle double right icon"></i>Próximo</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--fim da aba Endereço-->
+
+
+      <!--incio da aba Tipologia-->
+      <div class="ui bottom attached segment" suiTabContent="3">
+
+
+
+
+
+        <form class="ui form" #fAddTiplogia="ngForm" (ngSubmit)="salvarTiplogia(fAddTiplogia)">
+
+          <div class="ui stackable two column grid">
+
+            <div class="column">
+              <label>Tipologia</label>
+              <select class="ui dropdown" name="tipologia" [(ngModel)]="tipologiaPontoPresenca.cod_tipologia" required #tipologia>
+                <option value="">Selecione Tipologia</option>
+                <option *ngFor="let tipologia of tipologias" value="{{tipologia.cod_tipologia}}">{{tipologia.nome}}</option>
+              </select>
+            </div>
+
+            <div class="column">
+              <div class="one wide column" suiPopup popupText="Adicionar Tipologia" popupInverted [popupPlacement]="'top left'">
+                <button class="ui circular black icon button" type="submit">
+                  <i class="plus icon"></i>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </form>
+     
+
+
+
+      <div class="ui stackable four column grid">
+        
+        <div class="column" *ngFor="let tipologia of tipologiasGuardadas" suiPopup popupText="Remover Tipologia" popupInverted [popupPlacement]="'top left'">
+          <a class="ui button btn-tipologia" (click)="openModal(tipologia)">{{tipologia.nome}}</a>
+        </div>
+
+            <sui-modal *ngIf="abrirNodal" [isClosable]="false" [transition]="'scale'" [transitionDuration]="500" #modal>
+                <div class="header">
+      
+                    <div class="ui grid">
+                      <div class="fifteen wide column">
+                       Remoção
+                      </div>
+                      <div class="one wide column">
+                        <i class="close red link icon" (click)="closeModal(false)"></i>
+                      </div>
+                    </div>
+            
+                  </div>
+              <div class="content">
+                  <p>Tem certeza que deseja remover a tiplogia {{condicao}} ?</p>
+              </div>
+              <div class="actions">
+                  <button class="ui red button" (click)="closeModal(false)">Cancel</button>
+                  <button class="ui green button" (click)="removerTipologia(); modal.approve('done')" autofocus>OK</button>
+              </div>
+          </sui-modal>
+
+      </div>
+
+
+      <div class="ui stackable two column grid">
+        <div class="column">
+          <button class="ui left labeled icon button" (click)="secondActive = true">
+            <i class="angle double left icon"></i>Voltar</button>
+        </div>
+        <div class="column">
+          <button class="ui right labeled icon button right floated" (click)="fourthActive = true">
+            <i class="angle double right icon"></i>Próximo</button>
+        </div>
+      </div>
+
+  </div>
+  <!--fim da aba Tipologia-->
+
+  <!--incio da aba Contato-->
+  <div class="ui bottom attached segment" suiTabContent="4">
+    <app-contato></app-contato>
+    <div class="ui stackable one column grid">
+      <div class="column">
+        <button class="ui left floated labeled icon button" (click)="thirdActive = true">
+          <i class="angle double left icon"></i> Voltar</button>
+      </div>
+    </div>
+
+  </div>
+
+
+  </sui-tabset>
+
+</div>
+
+
+</div>

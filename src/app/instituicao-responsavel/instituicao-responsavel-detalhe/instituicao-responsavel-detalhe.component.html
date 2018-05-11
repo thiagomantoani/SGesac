@@ -1,0 +1,302 @@
+<div class="ui container">
+
+   <div class="ui stackable one column grid">
+      <!--botão voltar menu principal-->
+      <div class="column">
+        <button class="ui labeled icon button" data-position="left" [routerLink]="['/instResp']">
+          <i class="angle double left icon"></i>Voltar</button>
+      </div>
+    </div>
+  <div class="ui segment">
+  <sui-accordion [closeOthers]="false">
+
+    <!--inicio de Dados da Empresa:-->
+    <sui-accordion-panel [isOpen]="true">
+      <div title class="ui big label">
+        <i class="dropdown icon"></i> Dados da Empresa
+      </div>
+      <div content>
+        <div class="ui grid">
+          <div class="four wide column">
+            <h4 class="ui header">
+              CNPJ: </h4>{{ instiResp?.cnpj_instituicao }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">
+              Nome: </h4>{{ instiResp?.nome }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">
+              Sigla:</h4>{{ instiResp?.sigla }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">
+              Diario Oficial da União:</h4>{{ instiResp?.dao }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">
+              Termo de coperação:</h4>{{ instiResp?.termo_coop }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">
+              Número do processo:</h4>{{ instiResp?.num_processo }}</div>
+        </div>
+      </div>
+
+    </sui-accordion-panel>
+    <!--fim de Dados da Empresa:-->
+
+    <!--inicio de endereço-->
+    <sui-accordion-panel>
+      <div title class="ui big label">
+        <i class="dropdown icon"></i> Endereço
+      </div>
+
+      <div content>
+        <div class="ui grid">
+          <div class="four wide column">
+            <h4 class="ui header">Endereço:</h4> {{ instiResp?.endereco }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">Nº:</h4> {{ instiResp?.numero }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">Bairro:</h4> {{ instiResp?.bairro }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">Complemento:</h4> {{ instiResp?.complemento }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">Cep</h4> {{ instiResp?.cep }}</div>
+        </div>
+      </div>
+
+    </sui-accordion-panel>
+    <!--fim de endereço-->
+
+    <!--inicio de Representante Legal-->
+    <sui-accordion-panel>
+      <div title class="ui big label">
+        <i class="dropdown icon"></i> Representante Legal
+      </div>
+      <div content>
+        <div class="ui grid">
+          <div class="four wide column">
+            <h4 class="ui header">Nome:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Cargo:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Status:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Email:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Telefone:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Telefone2:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Data Inicial:</h4>
+          </div>
+          <div class="four wide column">
+            <h4 class="ui header">Data Final:</h4>
+          </div>
+        </div>
+      </div>
+    </sui-accordion-panel>
+    <!--fim de tipologia-->
+
+    <!--inicio de contato-->
+    <sui-accordion-panel>
+      <div title class="ui big label">
+        <i class="dropdown icon"></i> Contato
+      </div>
+      <div content>
+        <div class="ui grid">
+          <div class="four wide column">
+            <h4 class="ui header">Nome:</h4> {{ instiResp?.endereco }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">Cargo:</h4> {{ instiResp?.endereco }}</div>
+          <div class="four wide column">
+            <h4 class="ui header">E-mail:</h4> {{ instiResp?.endereco }}</div>
+          <div class="two wide column">
+            <h4 class="ui header">Telefone:</h4> {{ instiResp?.endereco }}</div>
+          <div class="two wide column">
+            <h4 class="ui header">Telefone:</h4> {{ instiResp?.endereco }}</div>
+        </div>
+      </div>
+    </sui-accordion-panel>
+    <!--fim de contato-->
+
+  </sui-accordion>
+</div>
+</div>
+<!--
+ <div id="visuIR" class="modal"   >
+    <a routerLink="/instResp" >
+    <i ></i>
+  </a>
+  <div >
+
+
+    <section class=" ">
+
+      <div class="">
+        <div class=" ">
+          <span class="">
+            <div class=" ">
+              <div class=" ">
+                <h5>Dados da Empresa:</h5>
+                <blockquote>
+                  <div class="">
+                    <div class="">
+                      CNPJ: {{ instituicao.cnpj }}
+                    </div>
+                    <div class="">
+                      Nome: {{ instituicao.nome_empresa | json }}
+                    </div>
+                    <div class="">
+                      Sigla: {{ instituicao.sigla }}
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="">
+                      Diario Oficial da União: {{ instituicao.dou }}
+                    </div>
+                    <div class="">
+                      Termo de coperação: {{ instituicao.cnpj }}
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="">
+                      Número do processo: {{ instituicao.cnpj }}
+                    </div>
+                  </div>
+                </blockquote>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="">
+        <div class=" ">
+          <span class="">
+            <div class=" ">
+              <div class=" ">
+                <h5>Endereço:</h5>
+                <blockquote>
+                  <div class="">
+                    <div class="">
+                      Endereço:
+                    </div>
+                    <div class="">
+                      Bairro:
+                    </div>
+                    <div class="">
+                      Número:
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="">
+                      Cep:
+                    </div>
+                    <div class="">
+                      Estado:
+                    </div>
+                    <div class="">
+                      Município:
+                    </div>
+                  </div>
+                </blockquote>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="">
+        <div class=" ">
+          <span class="">
+            <div class=" ">
+              <div class=" ">
+                <h5>Representante Legal:</h5>
+                <blockquote>
+                  <div class="">
+                    <div class="">
+                      Nome:
+                    </div>
+                    <div class="">
+                      Cargo:
+                    </div>
+                    <div class="">
+                      Status:
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="">
+                      Email:
+                    </div>
+                    <div class="">
+                      Telefone:
+                    </div>
+                    <div class="">
+                      Telefone2:
+                    </div>
+                  </div>
+                  <div class="">
+                    <div class="">
+                      Data Inicial:
+                    </div>
+                    <div class="">
+                      Data Final:
+                    </div>
+                  </div>
+                </blockquote>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <div class="">
+        <div class=" ">
+          <span class="">
+            <div class=" ">
+              <div class=" ">
+                <h5>Contato:</h5>
+                <blockquote>
+                  <div class="">
+                    <div class="">
+                      Nome:
+                    </div>
+                    <div class="">
+                      Email:
+                    </div>
+                  </div>
+
+                  <div class="">
+                    <div class="">
+                      Cargo:
+                    </div>
+                    <div class="">
+                      Telefone:
+                    </div>
+                    <div class="">
+                      Telefone2:
+                    </div>
+                  </div>
+
+
+                </blockquote>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+
+
+
+
+    </section>
+  </div>
+
+</div> -->
+
+
+

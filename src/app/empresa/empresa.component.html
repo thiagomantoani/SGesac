@@ -1,0 +1,78 @@
+<div class="ui container">
+
+    <div class="ui stackable one column grid">
+      <div class="column">
+        <button class="ui labeled icon button" data-position="left" [routerLink]="['novo']">
+          <i class="right plus circle icon"></i>Adicionar Empresas</button>
+      </div>
+    </div>
+
+    <sui-dimmer class="inverted" [(isDimmed)]="segmentDimmed">
+        <div class="ui massive text loader">Carregando...</div>
+    </sui-dimmer>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th class="ui center aligned collapsing">
+              <div class="ui icon input">
+                <input class="tituloTabela" type="text" name="cnpj" [(ngModel)]="filtros.cnpj" placeholder="CNPJ">
+                <i class="search icon"></i>
+              </div>
+            </th>
+          <th class="ui center aligned collapsing">
+              <div class="ui icon input">
+                <input class="tituloTabela" type="text" name="empresa" [(ngModel)]="filtros.empresa" placeholder="Empresa">
+                <i class="search icon"></i>
+              </div>
+            </th>
+          <th class="ui center aligned collapsing">
+              <div class="ui icon input">
+                <input class="tituloTabela" type="text" name="municipio" [(ngModel)]="filtros.municipio" placeholder="Município">
+                <i class="search icon"></i>
+              </div>
+            </th>
+          <th class="ui center aligned collapsing">
+              <div class="ui icon input">
+                <input class="tituloTabela" type="text" name="uf" [(ngModel)]="filtros.uf" placeholder="Uf">
+                <i class="search icon"></i>
+              </div>
+            </th>
+            <th class="ui center aligned collapsing">
+                <p class="acaoTable">Ações</p>
+              </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas | filterEmpresa:filtros.cnpj:filtros.empresa:filtros.municipio:filtros.uf">
+          <td>{{ empresa.cnpj_empresa }}</td>
+          <td>{{ empresa.empresa }}</td>
+          <td>{{ empresa.nome_municipio }}</td>
+          <td>{{ empresa.uf }}</td>
+          <td class="ui center aligned collapsing">
+            <a class="ui icon button circular" [routerLink]="[empresa.cnpj_empresa]" suiPopup popupHeader="Editar" popupInverted="true">
+              <i class="pencil alternate icon"></i>
+            </a>
+            <a class="ui icon button circular" suiPopup popupHeader="Remover" popupInverted="true" (click)="deletarEmpresa(empresa)">
+              <i class="trash alternate icon"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="5">
+            <div class="ui right floated pagination menu">
+                <sui-pagination [collectionSize]='totalItens'
+                                [pageSize]="itensPagina"
+                                [maxSize]="10"
+                                [hasEllipses]="true"
+                                [(page)]="pagina"
+                                (click)="mudarPagina(pagina)"
+                                >
+                </sui-pagination>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>

@@ -1,0 +1,93 @@
+<div class="ui container">
+
+        <!-- Tabs Contrato -->
+        <div class="ui bottom attached segment column">
+          <form class="ui form" [formGroup]="formTipologias">
+            <div class="ui right aligned grid stackable">
+              <div class=" left floated left aligned sixteen wide column">
+                <div class="ui segment">
+                  <div class="field">
+                    <div class="fields">
+                      <div class="eight wide field">
+                        <label>Código Tipologia</label>
+                        <input type="text" placeholder="Código Tipologia" formControlName="cod_tipologia">
+                      </div>
+                      <div class="eight wide field">
+                        <label>Nome</label>
+                        <input type="text" placeholder="Nome" formControlName="nome">
+                      </div>
+                      <div class="three wide field">
+                        <button class="ui right floated labeled icon button btnAdd" (click)="salvarTipologia()">
+                          <i class="plus icon"></i>
+                          Adicionar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Fim Tabs Contrato -->
+    <table class="ui celled table">
+      <thead>
+        <tr>
+            <th class="ui center aligned collapsing">
+                <div class="ui icon input">
+                  <input class="tituloTabela" type="text" name="codTip" [(ngModel)]="filtros.codTip" placeholder="Código Tipologia">
+                  <i class="search icon"></i>
+                </div>
+              </th>
+          <th class="ui center aligned collapsing">
+              <div class="ui icon input">
+                <input class="tituloTabela" type="text" name="nome" [(ngModel)]="filtros.nome" placeholder="Nome">
+                <i class="search icon"></i>
+              </div>
+            </th>
+            <th class="ui center aligned collapsing">
+                <p class="acaoTable">Ações</p>
+              </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tipo of tipologias | filterTipologia:filtros.codTip:filtros.nome; index as i">
+          <td >{{tipo.cod_tipologia}}</td>
+          <td>
+            <div class="ui input fluid" [ngClass]="{'disabled': desabilitado !== i}">
+              <input type="text" [(ngModel)]="tipo.nome" #nomeTipologia (keyup)="change(tipo)" placeholder="Procurar">
+            </div>
+          </td>
+          <td class="ui center aligned collapsing">
+            <!-- <a class="ui icon button circular" [routerLink]="['/detalPonto']" suiPopup popupHeader="Visualizar" popupInverted="true">
+              <i class="search icon"></i>
+            </a> -->
+            <a class="ui icon button circular"(click)='editar(i)' suiPopup popupHeader="Editar" popupInverted="true">
+              <i class="pencil alternate icon"></i>
+            </a>
+            <a class="ui icon button circular" (click)='removerTipologia(tipo)' suiPopup popupHeader="Remover" popupInverted="true">
+              <i class="trash alternate icon"></i>
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="7">
+            <div class="ui right floated pagination menu">
+              <a class="icon item">
+                <i class="left chevron icon"></i>
+              </a>
+              <a class="item">1</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="icon item">
+                <i class="right chevron icon"></i>
+              </a>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>

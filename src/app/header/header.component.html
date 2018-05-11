@@ -1,0 +1,17 @@
+
+<div class="ui secondary pointing menu" *ngIf="isLogado()" >
+  <a class="item" routerLinkActive="active" [routerLink]="['home']">Início</a>
+  <a class="item" routerLinkActive="active" [routerLink]="['pontPre']">Ponto de Presença</a>
+  <a class="item" routerLinkActive="active" [routerLink]="['instResp']">Instituição Responsável</a>
+  <a class="item" routerLinkActive="active" [routerLink]="['empresa']">Empresas</a>
+  <a class="item" routerLinkActive="active" [routerLink]="['contrato']">Contratos</a>
+  <a class="item" routerLinkActive="active" [routerLink]="['tipologia']">Tipologia</a>
+  <!-- <a class="item" routerLinkActive="active" [routerLink]="['municipio']">Municípios</a> -->
+  <a class="item" routerLinkActive="active" [routerLink]="['usuario']"> Usuário</a>
+  <div class="right menu">
+    <a class="ui item" (click)="logout()">
+      Logout
+    </a>
+  </div>
+</div>
+

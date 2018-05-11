@@ -1,0 +1,87 @@
+
+
+<div class="ui container">
+
+
+
+  <form class="form-table">
+
+    <div class="ui stackable one column grid">
+
+      <!--botão voltar menu principal-->
+        <div class="column">
+        <button class="ui labeled icon button" data-position="left" [routerLink]="['']">
+          <i class="angle double left icon"></i>Voltar</button>
+        </div>
+        <!-- <div class="column">
+          <button class="ui labeled icon button" data-position="left" [routerLink]="['/novoPonto']">
+            <i class="right plus circle icon"></i>Ponto de Presença</button>
+        </div> -->
+
+
+    </div>
+
+    <sui-dimmer class="inverted" [(isDimmed)]="segmentDimmed">
+        <div class="ui massive text loader">Carregando...</div>
+    </sui-dimmer>
+    <table class="ui celled table">
+      <thead>
+        <tr>
+          <th>
+            <sui-select icon="filter" [options]="filters" [isSearchable]="true" placeholder="Código do IBGE" #filterSelect>
+              <sui-select-option *ngFor="let o of filterSelect.filteredOptions" [value]="o"></sui-select-option>
+            </sui-select>
+          </th>
+          <th>
+            <sui-select icon="filter" [options]="filters" [isSearchable]="true" placeholder="UF" #filterSelect>
+              <sui-select-option *ngFor="let o of filterSelect.filteredOptions" [value]="o"></sui-select-option>
+            </sui-select>
+          </th>
+          <th>
+            <sui-select icon="filter" [options]="filters" [isSearchable]="true" placeholder="Município" #filterSelect>
+              <sui-select-option *ngFor="let o of filterSelect.filteredOptions" [value]="o"></sui-select-option>
+            </sui-select>
+          </th>
+          <th>
+            <sui-select icon="filter" [options]="filters" [isSearchable]="true" placeholder="População" #filterSelect>
+              <sui-select-option *ngFor="let o of filterSelect.filteredOptions" [value]="o"></sui-select-option>
+            </sui-select>
+          </th>
+
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let municipio of municiposPag">
+          <td>{{municipio.cod_ibge}}</td>
+          <td>{{municipio.nome_municipio}}</td>
+          <td>{{municipio.uf}}</td>
+          <td>{{municipio.populacao}}</td>
+          <td>
+            <a class="ui icon button circular" [routerLink]="['/']" suiPopup popupHeader="Visualizar" popupInverted="true"> <i class="search icon"></i> </a>
+            <a class="ui icon button circular" suiPopup popupHeader="Editar" popupInverted="true">  <i class="pencil alternate icon"></i></a>
+            <a class="ui icon button circular" suiPopup popupHeader="Remover" popupInverted="true">  <i class="trash alternate icon"></i></a>
+          </td>
+        </tr>
+
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="7">
+              <div class="ui right floated pagination menu">
+                  <sui-pagination [collectionSize]='totalItens'
+                                  [pageSize]="numeroPagina"
+                                  [maxSize]="10"
+                                  [hasEllipses]="true"
+                                  [(page)]="select"
+                                  (click)="page(select)"
+                                  >
+
+                  </sui-pagination>
+              </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+</div>

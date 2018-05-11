@@ -1,0 +1,103 @@
+<!-- <app-menu> -->
+<div class="ui container">
+  <div class="ui stackable one column grid">
+    <div class="column">
+      <button class="ui labeled icon button" data-position="left" [routerLink]="['novo']">
+        <i class="right plus circle icon"></i>Ponto de Presença</button>
+    </div>
+
+  </div>
+  <!-- <form class="form-table"> -->
+  <sui-dimmer class="inverted" [(isDimmed)]="segmentDimmed">
+    <div class="ui massive text loader">Carregando...</div>
+  </sui-dimmer>
+  <table class="ui celled table">
+    <thead>
+      <tr>
+          <th class="ui center aligned collapsing">
+              <div class="ui icon input">
+                <input class="tituloTabela inputPequeno" type="text" name="gesac" [(ngModel)]="filtros.gesac" placeholder="Gesac">
+                <i class="search icon"></i>
+              </div>
+            </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela inputMini" type="text" name="uf" [(ngModel)]="filtros.uf" placeholder="Uf">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela inputP" type="text" name="municipio" [(ngModel)]="filtros.municipio" placeholder="Município">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela inputMediano" type="text" name="status" [(ngModel)]="filtros.status" placeholder="Status do ponto">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela inputMedio" type="text" name="ponto" [(ngModel)]="filtros.ponto" placeholder="Ponto de presença">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela inputP" type="text" name="tipologia" [(ngModel)]="filtros.tipologia" placeholder="Tipologia">
+              <i class="search icon"></i>
+            </div>
+          </th>
+          <th class="ui center aligned collapsing">
+              <p class="acaoTable">Ações</p>
+            </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ponto of pontoPresencaPag | filterPontoPresenca:filtros.gesac:filtros.uf:filtros.municipio:filtros.status:filtros.ponto:filtros.tipologia">
+        <td>{{ponto.cod_gesac}}</td>
+        <td>{{ponto.uf}}</td>
+        <td>{{ponto.nome_municipio}}</td>
+        <td>{{ponto.descricao}}</td>
+        <td>{{ponto.nome}}</td>
+        <td>{{ponto.tipologia}}</td>
+        <td class="ui center aligned collapsing">
+            <a class="ui icon button circular" [routerLink]="['/pontPre', ponto.cod_gesac, 'detalhe']" suiPopup popupHeader="Visualizar" popupInverted="true">
+              <i class="search icon"></i>
+            </a>
+          <a class="ui icon button circular" suiPopup popupHeader="Editar" popupInverted="true">
+              <i class="pencil alternate icon"></i>
+            </a>
+          <a class="ui icon button circular" suiPopup popupHeader="Remover" popupInverted="true">
+              <i class="trash alternate icon"></i>
+            </a>
+        </td>
+      </tr>
+
+    </tbody>
+    <tfoot>
+      <tr>
+
+          <th colspan="7">
+              <div class="ui right floated pagination menu">
+                  <sui-pagination [collectionSize]='totalItens'
+                                  [pageSize]="numeroPagina"
+                                  [maxSize]="10"
+                                  [hasEllipses]="true"
+                                  [(page)]="select"
+                                  (click)="page(select)"
+                                  >
+
+                  </sui-pagination>
+              </div>
+          </th>
+
+      </tr>
+    </tfoot>
+  </table>
+  <!-- </form> -->
+
+</div>
+<!-- </app-menu> -->

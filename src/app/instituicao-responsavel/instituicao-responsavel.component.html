@@ -1,0 +1,78 @@
+
+<div class="ui container">
+
+
+  <!-- Tabela dos dados de instituição responsavel -->
+  <div class="ui stackable one column grid">
+
+      <div class="column">
+        <!--botão adicionar novo ponto de presença-->
+        <button class="ui labeled icon button" data-position="left" [routerLink]="['novo']">
+          <i class="right plus circle icon"></i>Adicionar Instituição Responsável</button>
+      </div>
+    </div>
+
+
+  <table class="ui celled table">
+    <thead>
+      <tr>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela" type="text" name="cnpj" [(ngModel)]="filtros.cnpj" placeholder="CNPJ">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela" type="text" name="nome" [(ngModel)]="filtros.nome" placeholder="Nome">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+            <div class="ui icon input">
+              <input class="tituloTabela" type="text" name="sigla" [(ngModel)]="filtros.sigla" placeholder="Sigla">
+              <i class="search icon"></i>
+            </div>
+          </th>
+        <th class="ui center aligned collapsing">
+          <p class="acaoTable">Ações</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let instituicaoResp of instituicoesRespPag | filterInstResp:filtros.cnpj:filtros.nome:filtros.sigla">
+        <td>{{ instituicaoResp.cnpj_instituicao }}</td>
+        <td>{{ instituicaoResp.nome }}</td>
+        <td>{{ instituicaoResp.sigla }}</td>
+        <td class="ui center aligned">
+          <a class="ui icon button circular" [routerLink]="['visu' ,instituicaoResp?.cod_instituicao]" suiPopup popupHeader="Visualizar" popupInverted="true">
+            <i class="search icon"></i>
+          </a>
+          <a class="ui icon button circular" [routerLink]="['edit' ,instituicaoResp?.cod_instituicao]" suiPopup popupHeader="Editar" popupInverted="true">
+            <i class="pencil alternate icon"></i>
+          </a>
+          <a class="ui icon button circular" (click)="removerInstResp(instituicaoResp.cod_instituicao)" suiPopup popupHeader="Remover" popupInverted="true">
+            <i class="trash alternate icon"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+          <th colspan="7">
+              <div class="ui right floated pagination menu">
+                  <sui-pagination [collectionSize]='totalItens'
+                                  [pageSize]="numeroPagina"
+                                  [maxSize]="10"
+                                  [hasEllipses]="true"
+                                  [(page)]="select"
+                                  (click)="page(select)"
+                                  >
+                  </sui-pagination>
+              </div>
+          </th>
+      </tr>
+    </tfoot>
+  </table>
+
+</div>

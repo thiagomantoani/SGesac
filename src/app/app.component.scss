@@ -1,0 +1,9 @@
+.ui.attached.menu:not(.tabular){
+    margin: 0%;
+}
+
+.ui.attached:not(.message)+.ui.attached.segment:not(.top){
+  margin-bottom: 0%;
+}
+
+
